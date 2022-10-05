@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedRainRPG.Domain", "RedRainRPG.Domain\RedRainRPG.Domain.csproj", "{03DE20DA-8FE1-4E93-86BC-234848586C0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ECEA8C72-BEA3-4F2C-BD7E-040417881EE9}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RedRainRPG.Database", "RedRainRPG.Database\RedRainRPG.Database.sqlproj", "{A31BC36E-5271-49B9-B3CC-34E905D55326}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedRainRPG.API", "RedRainRPG.API\RedRainRPG.API.csproj", "{F3B03CD1-39AE-4DBF-81A4-B76506348079}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedRain.DataAccess.Tests", "RedRain.DataAccess.Tests\RedRain.DataAccess.Tests.csproj", "{D5AFC431-77E5-466D-B3B3-49A2C5B71F58}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedRain.DataAccess", "RedRain.DataAccess\RedRain.DataAccess.csproj", "{F3247780-71F1-4F2E-8332-227F84BD6C96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03DE20DA-8FE1-4E93-86BC-234848586C0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03DE20DA-8FE1-4E93-86BC-234848586C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03DE20DA-8FE1-4E93-86BC-234848586C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03DE20DA-8FE1-4E93-86BC-234848586C0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A31BC36E-5271-49B9-B3CC-34E905D55326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A31BC36E-5271-49B9-B3CC-34E905D55326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A31BC36E-5271-49B9-B3CC-34E905D55326}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A31BC36E-5271-49B9-B3CC-34E905D55326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A31BC36E-5271-49B9-B3CC-34E905D55326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A31BC36E-5271-49B9-B3CC-34E905D55326}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F3B03CD1-39AE-4DBF-81A4-B76506348079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B03CD1-39AE-4DBF-81A4-B76506348079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B03CD1-39AE-4DBF-81A4-B76506348079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B03CD1-39AE-4DBF-81A4-B76506348079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5AFC431-77E5-466D-B3B3-49A2C5B71F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5AFC431-77E5-466D-B3B3-49A2C5B71F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5AFC431-77E5-466D-B3B3-49A2C5B71F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5AFC431-77E5-466D-B3B3-49A2C5B71F58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3247780-71F1-4F2E-8332-227F84BD6C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3247780-71F1-4F2E-8332-227F84BD6C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3247780-71F1-4F2E-8332-227F84BD6C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3247780-71F1-4F2E-8332-227F84BD6C96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5AFC431-77E5-466D-B3B3-49A2C5B71F58} = {ECEA8C72-BEA3-4F2C-BD7E-040417881EE9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89830A9C-46DF-4BFE-8DE4-3F07A78F6C60}
+	EndGlobalSection
+EndGlobal
