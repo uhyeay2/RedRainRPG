@@ -4,6 +4,7 @@ using RedRainRPG.Domain.Constants;
 using RedRainRPG.Domain.Interfaces;
 using RedRainRPG.Domain.Interfaces.Repositories;
 using RedRainRPG.Domain.Models.BaseModels;
+using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
 using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
 using RedRainRPG.Domain.Models.PlayerModels.PlayerResponses;
 

@@ -1,4 +1,4 @@
-﻿namespace RedRainRPG.Domain.Models.BaseModels
+﻿namespace RedRainRPG.Domain.Models.BaseModels.BaseResponses
 {
     public class ExceptionResponse : BaseResponse
     {

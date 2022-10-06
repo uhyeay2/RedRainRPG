@@ -1,5 +1,5 @@
 ﻿using RedRainRPG.Domain.Constants;
-using RedRainRPG.Domain.Models.BaseModels;
+using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
 using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
 
 namespace RedRain.DataAccess.Tests.RepositoryTests.PlayerRepositoryTests

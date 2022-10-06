@@ -1,4 +1,4 @@
-﻿namespace RedRainRPG.Domain.Models.BaseModels
+﻿namespace RedRainRPG.Domain.Models.BaseModels.BaseResponses
 {
     /// <summary>
     /// Base Response by default is StatusCode 200 and IsException False

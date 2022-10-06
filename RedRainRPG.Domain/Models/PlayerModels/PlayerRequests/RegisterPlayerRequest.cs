@@ -1,32 +1,24 @@
 ﻿using RedRainRPG.Domain.Interfaces;
+using RedRainRPG.Domain.Models.BaseModels.BaseRequests;
 
 namespace RedRainRPG.Domain.Models.PlayerModels.PlayerRequests
 {
-    public class RegisterPlayerRequest : IValidatable
+    public class RegisterPlayerRequest : EmailBasedRequest, IValidatable
     {
         public RegisterPlayerRequest()
         {
         }
 
-        public RegisterPlayerRequest(string emailAddress, string accountName)
+        public RegisterPlayerRequest(string emailAddress, string accountName) : base(emailAddress)
         {
-            EmailAddress = emailAddress;
             AccountName = accountName;
         }
 
-        public string? EmailAddress { get; set; }
-        public string? AccountName { get; set; }
+        public string AccountName { get; set; } = string.Empty;
 
-        public bool IsValid(out string failedValidationMessage)
+        public override bool IsValid(out string failedValidationMessage)
         {
-            var isValid = true;
-            failedValidationMessage = string.Empty;
-
-            if (string.IsNullOrWhiteSpace(EmailAddress))
-            {
-                isValid = false;
-                failedValidationMessage = "EmailAddress Cannot Be Null or Empty/Whitespace! ";
-            }
+            var isValid = base.IsValid(out failedValidationMessage);
 
             if (string.IsNullOrWhiteSpace(AccountName))
             {

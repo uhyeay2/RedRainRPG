@@ -1,4 +1,4 @@
-﻿using RedRainRPG.Domain.Models.BaseModels;
+﻿using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
 
 namespace RedRainRPG.Domain.Models.PlayerModels.PlayerResponses
 {

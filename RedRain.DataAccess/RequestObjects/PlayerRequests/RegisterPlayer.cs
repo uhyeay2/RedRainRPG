@@ -16,7 +16,7 @@ namespace RedRain.DataAccess.RequestObjects.PlayerRequests
             AccountName = accountName;
         }
 
-        public RegisterPlayer(RegisterPlayerRequest request) : this(request?.EmailAddress, request?.AccountName) { }
+        public RegisterPlayer(RegisterPlayerRequest request) : this(request?.Email, request?.AccountName) { }
 
         #endregion
 

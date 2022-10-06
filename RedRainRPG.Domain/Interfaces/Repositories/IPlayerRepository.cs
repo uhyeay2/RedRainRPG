@@ -1,4 +1,4 @@
-﻿using RedRainRPG.Domain.Models.BaseModels;
+﻿using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
 using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
 
 namespace RedRainRPG.Domain.Interfaces.Repositories
