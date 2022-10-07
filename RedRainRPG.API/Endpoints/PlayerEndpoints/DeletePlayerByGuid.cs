@@ -1,12 +1,6 @@
-﻿using RedRainRPG.Domain.Constants.Routes;
-using RedRainRPG.Domain.Interfaces;
-using RedRainRPG.Domain.Interfaces.Repositories;
-using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
-using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
-
-namespace RedRainRPG.API.Endpoints.PlayerEndpoints
+﻿namespace RedRainRPG.API.Endpoints.PlayerEndpoints
 {
-    public class DeletePlayerByGuid : Endpoint<DeletePlayerByGuidRequest, BaseResponse>
+    public class DeletePlayerByGuid : Endpoint<GuidBasedRequest, BaseResponse>
     {
         private readonly IPlayerRepository _playerRepo;
 
@@ -17,18 +11,19 @@ namespace RedRainRPG.API.Endpoints.PlayerEndpoints
 
         public override void Configure()
         {
-            Post(PlayerRoutes.DeleteByGuid);
+            Post("player/deleteByGuid");
             AllowAnonymous();
         }
 
-        public override async Task<BaseResponse> ExecuteAsync(DeletePlayerByGuidRequest request, CancellationToken c = default)
+        public override async Task<BaseResponse> ExecuteAsync(GuidBasedRequest request, CancellationToken c = default)
         {
             if (request is IValidatable validatable && !validatable.IsValid(out var failedValidationMessage))
             {
-                return new BaseResponse(StatusCodes.Status400BadRequest, failedValidationMessage);
+                return new (StatusCodes.Status400BadRequest, failedValidationMessage);
             }
 
-            return await _playerRepo.DeletePlayerByGuid(request.Guid!.Value);
+            return BaseResponse.ExecutionResponse(await _playerRepo.DeletePlayerByGuid(request.Guid), expectedCountOfRowsAffected: 1,
+                responseIfCountDoesNotMatch: new(StatusCodes.Status404NotFound, $"No Player was found with the Guid: {request.Guid}"));
         }
     }
 }

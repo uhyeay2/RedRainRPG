@@ -1,6 +1,5 @@
 ﻿using RedRain.DataAccess.Attributes.SQLGeneration.InsertAttributes;
 using RedRain.DataAccess.Interfaces;
-using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
 
 namespace RedRain.DataAccess.RequestObjects.PlayerRequests
 {
@@ -15,8 +14,6 @@ namespace RedRain.DataAccess.RequestObjects.PlayerRequests
             EmailAddress = emailAddress;
             AccountName = accountName;
         }
-
-        public RegisterPlayer(RegisterPlayerRequest request) : this(request?.Email, request?.AccountName) { }
 
         #endregion
 

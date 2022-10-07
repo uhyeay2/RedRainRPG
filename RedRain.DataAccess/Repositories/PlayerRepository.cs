@@ -1,12 +1,8 @@
 ﻿using RedRain.DataAccess.DataTransferObjects;
 using RedRain.DataAccess.RequestObjects.PlayerRequests;
-using RedRainRPG.Domain.Constants;
 using RedRainRPG.Domain.Interfaces;
 using RedRainRPG.Domain.Interfaces.Repositories;
-using RedRainRPG.Domain.Models.BaseModels;
-using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
-using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
-using RedRainRPG.Domain.Models.PlayerModels.PlayerResponses;
+using RedRainRPG.Domain.Models;
 
 namespace RedRain.DataAccess.Repositories
 {
@@ -14,73 +10,12 @@ namespace RedRain.DataAccess.Repositories
     {
         public PlayerRepository(IConfig config) : base(config) { }
 
-        public async Task<BaseResponse> DeletePlayerByGuid(Guid guid)
-        {
-            try
-            {
-                var rowsAffected = await ExecuteAsync(new DeletePlayerByGuid(guid));
-                
-                return rowsAffected == 1 ? new ExecutionResponse(rowsAffected) : new (StatusCode.NotFound_404, $"There was no Player found with the guid: {guid}");
-            }
-            catch (Exception e)
-            {
-                return new ExceptionResponse(e);
-            }
-        }
+        public async Task<int> DeletePlayerByGuid(Guid guid) => await ExecuteAsync(new DeletePlayerByGuid(guid));
 
-        public async Task<BaseResponse> GetPlayerByEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                return new(StatusCode.BadRequest_400, "Email cannot be null empty or whitespace.");
-            }
-
-            try
-            {
-                var dto = await FetchAsync<GetPlayerByEmail, PlayerDTO>(new(email));
-
-                if(dto == null)
-                {
-                    return new (StatusCode.NotFound_404, $"No Player found with the email: {email}");
-                }
-
-                return new GetPlayerByEmailResponse(dto.ToPlayer());
-            }
-            catch (Exception e)
-            {
-                return new ExceptionResponse(e);
-            }
-        }
-
-        public async Task<BaseResponse> IsEmailRegistered(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                return new(StatusCode.BadRequest_400, "Email cannot be null empty or whitespace.");
-            }
-
-            try
-            {
-                return new IsEmailRegisteredResponse(await FetchAsync<IsEmailRegistered, bool>(new(email)));
-            }
-            catch (Exception e)
-            {
-                return new ExceptionResponse(e);
-            }
-        }
-
-        public async Task<BaseResponse> RegisterPlayerAsync(RegisterPlayerRequest request)
-        {
-            try
-            {
-                var rowsAffected = await ExecuteAsync(new RegisterPlayer(request));
-                
-                return rowsAffected == 1 ? new ExecutionResponse(rowsAffected) : new (400, "An account is already registered with this email or account name.");
-            }
-            catch (Exception e)
-            {
-                return new ExceptionResponse(e);
-            }
-        }
+        public async Task<Player?> GetPlayerByEmail(string email) => (await FetchAsync<GetPlayerByEmail, PlayerDTO>(new(email)))?.ToPlayer();
+       
+        public async Task<bool> IsEmailRegistered(string email) => await FetchAsync<IsEmailRegistered, bool>(new(email));
+  
+        public async Task<int> RegisterPlayerAsync(string emailAddress, string accountName) => await ExecuteAsync(new RegisterPlayer(emailAddress, accountName));
     }
 }

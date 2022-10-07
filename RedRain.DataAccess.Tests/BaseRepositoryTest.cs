@@ -3,7 +3,7 @@ using RedRain.DataAccess.Interfaces;
 using RedRain.DataAccess.RequestObjects._BaseRequests;
 using RedRainRPG.Domain.Interfaces;
 
-namespace RedRain.DataAccess.Tests.RepositoryTests
+namespace RedRain.DataAccess.Tests
 {
     public abstract class BaseRepositoryTest
     {

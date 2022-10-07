@@ -1,5 +1,5 @@
 ﻿using RedRain.DataAccess.Attributes.SQLGeneration.FetchAttributes;
-using RedRainRPG.Domain.Models.PlayerModels;
+using RedRainRPG.Domain.Models;
 
 namespace RedRain.DataAccess.DataTransferObjects
 {

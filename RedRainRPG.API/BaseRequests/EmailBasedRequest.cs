@@ -1,18 +1,18 @@
 ﻿using RedRainRPG.Domain.Extensions;
 using RedRainRPG.Domain.Interfaces;
 
-namespace RedRainRPG.Domain.Models.BaseModels.BaseRequests
+namespace RedRainRPG.API.BaseRequests
 {
-    public abstract class EmailBasedRequest : IValidatable
+    public class EmailBasedRequest : IValidatable
     {
         public string Email { get; set; } = string.Empty;
 
-        protected EmailBasedRequest(string email)
+        public EmailBasedRequest(string email)
         {
             Email = email;
         }
 
-        protected EmailBasedRequest()
+        public EmailBasedRequest()
         {
         }
 

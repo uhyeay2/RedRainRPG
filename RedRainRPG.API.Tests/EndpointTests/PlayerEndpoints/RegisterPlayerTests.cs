@@ -1,6 +1,6 @@
-﻿using Moq;
+﻿using Microsoft.AspNetCore.Http;
+using Moq;
 using RedRainRPG.API.Endpoints.PlayerEndpoints;
-using RedRainRPG.Domain.Constants;
 using RedRainRPG.Domain.Interfaces.Repositories;
 
 namespace RedRainRPG.API.Tests.EndpointTests.PlayerEndpoints
@@ -23,11 +23,11 @@ namespace RedRainRPG.API.Tests.EndpointTests.PlayerEndpoints
 
         [TestCaseSource(nameof(InvalidStringInputs))]
         public async Task RegisterPlayer_Given_InvalidEmail_ShouldReturn_BadRequest400(string invalidEmail) => 
-            Assert.That((await _endpoint.ExecuteAsync(new(invalidEmail, "Account"))).StatusCode, Is.EqualTo(StatusCode.BadRequest_400));
+            Assert.That((await _endpoint.ExecuteAsync(new(invalidEmail, "Account"))).StatusCode, Is.EqualTo(StatusCodes.Status400BadRequest));
 
 
         [TestCaseSource(nameof(InvalidStringInputs))]
         public async Task RegisterPlayer_Given_InvalidAccountName_ShouldReturn_BadRequest400(string invalidAccount) =>
-            Assert.That((await _endpoint.ExecuteAsync(new("Email", invalidAccount))).StatusCode, Is.EqualTo(StatusCode.BadRequest_400));
+            Assert.That((await _endpoint.ExecuteAsync(new("Email", invalidAccount))).StatusCode, Is.EqualTo(StatusCodes.Status400BadRequest));
     }
 }

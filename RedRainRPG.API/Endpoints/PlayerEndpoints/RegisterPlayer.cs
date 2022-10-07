@@ -1,11 +1,4 @@
-﻿using FastEndpoints;
-using RedRainRPG.Domain.Constants.Routes;
-using RedRainRPG.Domain.Interfaces;
-using RedRainRPG.Domain.Interfaces.Repositories;
-using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
-using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
-
-namespace RedRainRPG.API.Endpoints.PlayerEndpoints
+﻿namespace RedRainRPG.API.Endpoints.PlayerEndpoints
 {
     public class RegisterPlayer : Endpoint<RegisterPlayerRequest, BaseResponse>
     {
@@ -18,7 +11,7 @@ namespace RedRainRPG.API.Endpoints.PlayerEndpoints
 
         public override void Configure()
         {
-            Post(PlayerRoutes.RegisterPlayer);
+            Post("player/register");
             AllowAnonymous();
         }
 
@@ -29,7 +22,30 @@ namespace RedRainRPG.API.Endpoints.PlayerEndpoints
                 return new BaseResponse(StatusCodes.Status400BadRequest, failedValidationMessage);
             }
 
-            return  await _playerRepo.RegisterPlayerAsync(request);
+            return BaseResponse.ExecutionResponse(await _playerRepo.RegisterPlayerAsync(request.Email, request.AccountName), expectedCountOfRowsAffected: 1,
+                responseIfCountDoesNotMatch: new(StatusCodes.Status409Conflict, "Either the AccountName or Email provided is already in use."));
+        }
+    }
+
+    public class RegisterPlayerRequest : EmailBasedRequest
+    {
+        public RegisterPlayerRequest(string accountName, string email) : base(email) => AccountName = accountName;
+
+        public RegisterPlayerRequest() { }
+
+        public string AccountName { get; set; } = string.Empty;
+
+        public override bool IsValid(out string failedValidationMessage)
+        {
+            var isValid = base.IsValid(out failedValidationMessage);
+
+            if (string.IsNullOrWhiteSpace(AccountName))
+            {
+                isValid = false;
+                failedValidationMessage += "AccountName cannot be Null/Empty/Whitespace";
+            }
+
+            return isValid;
         }
     }
 }

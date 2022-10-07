@@ -1,4 +1,4 @@
-﻿namespace RedRainRPG.Domain.Models.PlayerModels
+﻿namespace RedRainRPG.Domain.Models
 {
     public class Player
     {

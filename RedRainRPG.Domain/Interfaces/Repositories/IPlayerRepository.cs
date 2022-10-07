@@ -1,16 +1,15 @@
-﻿using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
-using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
+﻿using RedRainRPG.Domain.Models;
 
 namespace RedRainRPG.Domain.Interfaces.Repositories
 {
     public interface IPlayerRepository
     {
-        Task<BaseResponse> RegisterPlayerAsync(RegisterPlayerRequest request);
+        Task<int> RegisterPlayerAsync(string emailAddress, string accountName);
 
-        Task<BaseResponse> IsEmailRegistered(string email);
+        Task<bool> IsEmailRegistered(string email);
 
-        Task<BaseResponse> GetPlayerByEmail(string email);
+        Task<Player?> GetPlayerByEmail(string email);
 
-        Task<BaseResponse> DeletePlayerByGuid(Guid guid);
+        Task<int> DeletePlayerByGuid(Guid guid);
     }
 }

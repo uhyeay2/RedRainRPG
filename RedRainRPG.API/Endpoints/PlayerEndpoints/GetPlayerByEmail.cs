@@ -1,12 +1,6 @@
-﻿using RedRainRPG.Domain.Constants.Routes;
-using RedRainRPG.Domain.Interfaces;
-using RedRainRPG.Domain.Interfaces.Repositories;
-using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
-using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
-
-namespace RedRainRPG.API.Endpoints.PlayerEndpoints
+﻿namespace RedRainRPG.API.Endpoints.PlayerEndpoints
 {
-    public class GetPlayerByEmail : Endpoint<GetPlayerByEmailRequest, BaseResponse>
+    public class GetPlayerByEmail : Endpoint<EmailBasedRequest, BaseResponse>
     {
         private readonly IPlayerRepository _playerRepo;
 
@@ -17,18 +11,25 @@ namespace RedRainRPG.API.Endpoints.PlayerEndpoints
 
         public override void Configure()
         {
-            Post(PlayerRoutes.GetByEmail);
+            Post("player/getByEmail");
             AllowAnonymous();
         }
 
-        public override async Task<BaseResponse> ExecuteAsync(GetPlayerByEmailRequest request, CancellationToken c = default)
+        public override async Task<BaseResponse> ExecuteAsync(EmailBasedRequest request, CancellationToken c = default)
         {
             if (request is IValidatable validatable && !validatable.IsValid(out var failedValidationMessage))
             {
-                return new BaseResponse(StatusCodes.Status400BadRequest, failedValidationMessage);
+                return new(StatusCodes.Status400BadRequest, failedValidationMessage);
             }
 
-            return await _playerRepo.GetPlayerByEmail(request.Email);
+            var player = await _playerRepo.GetPlayerByEmail(request.Email);
+
+            if(player == null)
+            {
+                return new(StatusCodes.Status404NotFound, $"No player was found with the email: {request.Email}");
+            }
+
+            return new(player);
         }
     }
 }

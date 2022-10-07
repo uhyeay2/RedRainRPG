@@ -1,12 +1,6 @@
-﻿using RedRainRPG.Domain.Constants.Routes;
-using RedRainRPG.Domain.Interfaces;
-using RedRainRPG.Domain.Interfaces.Repositories;
-using RedRainRPG.Domain.Models.BaseModels.BaseResponses;
-using RedRainRPG.Domain.Models.PlayerModels.PlayerRequests;
-
-namespace RedRainRPG.API.Endpoints.PlayerEndpoints
+﻿namespace RedRainRPG.API.Endpoints.PlayerEndpoints
 {
-    public class IsEmailRegistered : Endpoint<IsEmailRegisteredRequest, BaseResponse>
+    public class IsEmailRegistered : Endpoint<EmailBasedRequest, BaseResponse>
     {
         private readonly IPlayerRepository _playerRepo;
 
@@ -17,18 +11,18 @@ namespace RedRainRPG.API.Endpoints.PlayerEndpoints
 
         public override void Configure()
         {
-            Post(PlayerRoutes.IsEmailRegistered);
+            Post("player/isEmailRegistered");
             AllowAnonymous();
         }
 
-        public override async Task<BaseResponse> ExecuteAsync(IsEmailRegisteredRequest request, CancellationToken c = default)
+        public override async Task<BaseResponse> ExecuteAsync(EmailBasedRequest request, CancellationToken c = default)
         {
             if (request is IValidatable validatable && !validatable.IsValid(out var failedValidationMessage))
             {
                 return new BaseResponse(StatusCodes.Status400BadRequest, failedValidationMessage);
             }
 
-            return await _playerRepo.IsEmailRegistered(request.Email);
+            return new(await _playerRepo.IsEmailRegistered(request.Email));
         }
     }
 }
